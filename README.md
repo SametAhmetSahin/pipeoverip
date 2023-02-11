@@ -38,4 +38,5 @@ None as far as I know.
 ## What to Do
 Although it would be nice to warn the sender if the receiver buffer isn't big enough to read all the data, at the moment I can't think of a good way to do this, probably caused by me being inexperienced. Maybe implementing "packets" could be a good idea?  
 With the next update I plan to implement password-based encryption to differentiate it from nc, and it would be a nice exercise to practice using encryption libraries in Rust and in general.  
-Implementing a special character sequence acting as an escape sequence to terminate a receiver in keep-open mode?
+Implementing a special character sequence acting as an escape sequence to terminate a receiver in keep-open mode?  
+I probably should setup Cross to provide builds for all platforms.
