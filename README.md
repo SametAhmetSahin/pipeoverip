@@ -40,3 +40,25 @@ Although it would be nice to warn the sender if the receiver buffer isn't big en
 With the next update I plan to implement password-based encryption to differentiate it from nc, and it would be a nice exercise to practice using encryption libraries in Rust and in general.  
 Implementing a special character sequence acting as an escape sequence to terminate a receiver in keep-open mode?  
 I probably should setup Cross to provide builds for all platforms.
+
+## Binary is Too Large
+Here's the results of the minimisation of binary size (measured with `du -sh`), taken from John Thagen's min-sized-rust repository [https://github.com/johnthagen/min-sized-rust]:  
+```
+method, size
+debug, 18M
+only --release, 4.64 M
++ symbols stripped, 820K
++ opt-level = z, 772K
++ lto, 588K
++ codegen units, 572K
++ abort on panic instead of backtrace, 528K
+```
+I currently think stripping the symbols is enough, 820K is a pretty good number in my opinion. But if you wanted to go 528K, here's the `[profile.release]` section of `Cargo.toml`:  
+```
+[profile.release]
+strip = true  # Automatically strip symbols from the binary.
+opt-level = "z"  # Optimize for size.
+lto = true
+codegen-units = 1
+panic = "abort"
+```
