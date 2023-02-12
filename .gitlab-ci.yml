@@ -1,0 +1,14 @@
+stages:
+  - build
+
+rust-latest:
+  stage: build
+  image: rust:latest
+  script:
+    - cargo build --release --verbose
+    - cargo test --verbose
+  artifacts:
+    paths:
+      - "target/release/pipeoverip"
+    when: on_success
+    expire_in: 1 year
